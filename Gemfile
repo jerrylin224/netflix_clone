@@ -8,7 +8,8 @@ gem 'haml-rails'
 gem 'sass-rails'
 gem 'uglifier'
 gem 'jquery-rails'
-gem 'pg'
+gem 'pg', '~> 0.20.0'
+gem 'rake', '< 11.0'
 
 group :development do
   gem 'thin'
