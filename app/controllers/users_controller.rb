@@ -8,7 +8,7 @@ class UsersController < ApplicationController
 
     if @user.valid?
       flash[:notice] = "You have created your account!"
-      redirect_to root_path
+      redirect_to sign_in_path
     else
       render 'new'
     end
