@@ -27,7 +27,7 @@ describe UsersController do
       before(:each) do
         post :create, user: {full_name: "Lin", password: "password"}
       end
-
+ 
       it "doesn't create @user" do
         expect(User.count).to eq 0
       end

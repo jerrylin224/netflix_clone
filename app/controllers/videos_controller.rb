@@ -7,8 +7,10 @@ class VideosController < ApplicationController
   end
 
   def show
-    binding.pry
     @video = Video.find(params[:id])
+
+    @reviews = @video.reviews
+    # binding.pry
   end
 
   def search
