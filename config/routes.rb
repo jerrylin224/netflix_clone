@@ -10,7 +10,7 @@ Myflix::Application.routes.draw do
     resources :reviews, only: [:create]
   end
 
-  
+  resources :queue_items, only: [:create]
 
   get 'ui(/:action)', controller: 'ui'
   get '/home', to: 'videos#index'
