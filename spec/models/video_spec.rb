@@ -27,9 +27,9 @@ describe Video do
 
 
     it "returns an array of all matches ordered by created_at" do
-      the_hangover = Video.create(title: 'The Hangover', description: "Some contents here")
+      the_hangover = Video.create(title: 'The Hangover', description: "Some contents here", created_at: 1.day.ago)
       captain_america = Video.create(title: 'Captain America: The Winter Soldier', description: "some contents here")
-      expect(Video.search_by_title('The')).to eq [the_hangover, captain_america]
+      expect(Video.search_by_title('The')).to eq [captain_america, the_hangover]
     end
 
     it "returns an empty array if given empty string" do

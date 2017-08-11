@@ -14,18 +14,21 @@ describe SessionsController do
   describe "POST create" do
     let(:alice) { Fabricate(:user) }
 
+
     context "with valid user" do
-      it "puts the signin user in the session" do
+      before(:each) do
         post :create, {email: alice.email, password: alice.password}
+      end
+
+      it "puts the signin user in the session" do
         expect(session[:user_id]).to eq alice.id
       end
 
       it "redirect the signin user to home path" do
-        post :create, {email: alice.email, password: alice.password}
         expect(response).to redirect_to home_path
       end
+
       it "set the notice" do
-        post :create, {email: alice.email, password: alice.password}
         expect(flash[:notice]).not_to be_blank
       end
     end
