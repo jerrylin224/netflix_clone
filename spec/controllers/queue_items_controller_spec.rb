@@ -107,6 +107,16 @@ describe QueueItemsController do
         delete :destroy, id: 3
         expect(response).to redirect_to sign_in_path
       end
+
+      it "normalizes the remaining queue items" do
+        user = Fabricate(:user)
+        session[:user_id] = user.id
+        queue_item1 = Fabricate(:queue_item, user: user, position: 1)
+        queue_item2 = Fabricate(:queue_item, user: user, position: 2)
+        queue_item3 = Fabricate(:queue_item, user: user, position: 3)
+        delete :destroy, id: queue_item2.id
+        expect(user.queue_items.map(&:position)).to eq [1,2]
+      end
     end
   end
 
@@ -165,12 +175,27 @@ describe QueueItemsController do
         queue_item1 = Fabricate(:queue_item, position: 1, user: user)
         queue_item2 = Fabricate(:queue_item, position: 2, user: user)
         post :update_queue, queue_items: [{id: queue_item1.id, position: 3}, {id: queue_item2.id, position: 2.1}]
-        # require 'pry'; binding.pry
         expect(queue_item1.reload.position).to eq 1
       end
     end
-    context "with unauthenticated users"
-    context "with queue items that do not belong to the current user"
+    context "with unauthenticated users" do
+      it "redirects the user to sign in path" do
+        post :update_queue, queue_items: [{id: 1, position: 3}, {id: 2, position: 2.1}]
+        expect(response).to redirect_to sign_in_path
+      end
+    end
+    context "with queue items that do not belong to the current user" do
+      it "doesn't save data to database" do
+        user1 = Fabricate(:user)
+        user2 = Fabricate(:user)
+        session[:user_id] = user1.id
+        queue_item1 = Fabricate(:queue_item, position: 2, user: user1)
+        queue_item2 = Fabricate(:queue_item, position: 1, user: user2)
+        post :update_queue, queue_items: [{id: queue_item1.id, position: 3}, {id: queue_item2.id, position: 2}]
+        expect(queue_item2.reload.position).to eq 1
+      end
+    end
+
     # used to prevent malicious user
   end
 end
