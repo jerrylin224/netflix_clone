@@ -8,6 +8,19 @@ describe UsersController do
     end
   end
 
+  describe "GET show" do
+    it_behaves_like "requires sign in" do
+      let(:action) { get :show, id: 2 }
+    end
+
+    it "sets @user for authenticated user" do
+      charlie = Fabricate(:user)
+      set_current_user(charlie)
+      get :show, id: charlie.id
+      expect(assigns(:user)).to eq charlie
+    end
+  end
+
   describe "POST create" do
     context "with valid input" do
       before(:each) do

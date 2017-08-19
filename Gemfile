@@ -8,7 +8,7 @@ gem 'haml-rails'
 gem 'sass-rails'
 gem 'uglifier'
 gem 'jquery-rails'
-gem 'pg', '~> 0.20.0'
+gem 'pg', '~> 0.17.0'
 gem 'rake', '< 11.0'
 gem 'bcrypt'
 gem 'bootstrap_form'
@@ -31,6 +31,8 @@ group :test do
   gem 'database_cleaner', '1.4.1'
   gem 'shoulda-matchers', '2.7.0'
   gem 'vcr', '2.9.3'
+  gem 'capybara'
+  gem 'launchy'
 end
 
 group :production do

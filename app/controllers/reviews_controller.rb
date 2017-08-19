@@ -2,7 +2,7 @@ class ReviewsController < ApplicationController
   before_action :require_login
   def create
     @video = Video.find(params[:video_id])
-    review = @video.reviews.create(video_params.merge!(user: current_user))
+    review = @video.reviews.create(review_params.merge!(user: current_user))
     if review.valid?
       redirect_to @video
     else
@@ -12,7 +12,7 @@ class ReviewsController < ApplicationController
   end
 
   private 
-    def video_params
+    def review_params
       params.require(:review).permit(:rating, :content)
     end
 end
