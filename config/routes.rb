@@ -17,7 +17,7 @@ Myflix::Application.routes.draw do
   get 'home', to: 'videos#index'
   # get '/videos/:id', to: 'videos#show'
 
-  resources :relationships, only: [:destroy]
+  resources :relationships, only: [:create, :destroy]
   get 'people', to: 'relationships#index'
 
   get 'register', to: 'users#new'

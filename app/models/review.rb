@@ -6,8 +6,4 @@ class Review < ActiveRecord::Base
   delegate :title, to: :video, prefix: :video
 
   validates_presence_of :rating, :content
-
-  # def video_title
-  #   video.title
-  # end
 end
