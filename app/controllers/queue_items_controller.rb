@@ -6,7 +6,6 @@ class QueueItemsController < ApplicationController
   end
 
   def create
-    binding.pry
     video = Video.find(params[:video_id])
     queue_video(video)
     redirect_to my_queue_path

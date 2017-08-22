@@ -8,6 +8,11 @@ describe User do
   it { should have_many(:reviews).order(created_at: :desc) }
   it { should have_many(:queue_items).order(:position) }
 
+  it "generates a random token when the user is created" do
+    charlie = Fabricate(:user)
+    expect(charlie.token).to be_present
+  end
+
   describe "#queued_video?" do
     it "returns true when the user queued the video" do
       user = Fabricate(:user)
@@ -28,14 +33,14 @@ describe User do
       charlie = Fabricate(:user)
       bob = Fabricate(:user)
       Fabricate(:relationship, leader: bob, follower: charlie)
-      expect(charlie.follows?(bob)).to be_true
+      expect(charlie.follows?(bob)).to be true
     end
 
     it "returns false if the user doesn't have a following relationship with another user" do
       charlie = Fabricate(:user)
       bob = Fabricate(:user)
       Fabricate(:relationship, leader: charlie, follower: bob)
-      expect(charlie.follows?(bob)).to be_false
+      expect(charlie.follows?(bob)).to be false
     end
   end
 end
