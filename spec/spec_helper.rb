@@ -4,6 +4,7 @@ require File.expand_path("../../config/environment", __FILE__)
 require 'database_cleaner'
 require 'rspec/rails'
 require 'capybara/rails'
+require 'capybara/email/rspec'
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
@@ -28,7 +29,6 @@ RSpec.configure do |config|
   # config.mock_with :rr
   config.before(:each) do
     DatabaseCleaner.clean
-    Rails.application.load_seed
   end
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
