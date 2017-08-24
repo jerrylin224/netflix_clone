@@ -43,7 +43,6 @@ describe InvitationsController do
         post :create, invitation: { recipient_name: "Joe Smith", recipient_email: "joe@example.com", message: "Join the site" }
         expect(flash[:success]).to be_present
       end
-
     end
 
     context "invalid input" do
