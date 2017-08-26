@@ -6,8 +6,11 @@ Myflix::Application.routes.draw do
     collection do
       get :search, to: "videos#search"
     end
-
     resources :reviews, only: [:create]
+  end
+
+  namespace :admin do
+    resources :videos, only: [:new, :create]
   end
 
   resources :queue_items, only: [:create, :destroy]
