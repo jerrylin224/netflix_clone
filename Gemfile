@@ -14,6 +14,8 @@ gem 'bcrypt'
 gem 'bootstrap_form'
 gem 'fabrication'
 gem 'faker'
+gem 'carrierwave'
+gem 'mini_magick'
 
 group :development do
   gem 'thin'
