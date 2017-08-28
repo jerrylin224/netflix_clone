@@ -18,9 +18,10 @@ class UsersController < ApplicationController
       Stripe::Charge.create({
         :amount => 999,
         :currency => "usd",
-        :source => params[:stripeToken], # obtained with Stripe.js
+        :card => params[:stripeToken], # obtained with Stripe.js
         :description => "Sign up charge for #{@user.email}"
       })
+
       AppMailer.send_welcome_email(@user).deliver
       flash[:notice] = "You have created your account!"
       redirect_to sign_in_path
