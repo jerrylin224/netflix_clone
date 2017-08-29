@@ -15,17 +15,17 @@ class UsersController < ApplicationController
     if @user.valid?
       handle_invitation
       # binding.pry
-      Stripe.api_key = Figaro.env.STRIPE_SECRET_KEY
-      begin
-        Stripe::Charge.create({
-          :amount => 999,
-          :currency => "usd",
-          :card => params[:stripeToken], # obtained with Stripe.js
-          :description => "Sign up charge for #{@user.email}"
-        })
-      rescue Stripe::CardError => e
-        flash[:danger] = e.message
-      end
+      # Stripe.api_key = Figaro.env.STRIPE_SECRET_KEY
+      # begin
+      #   Stripe::Charge.create({
+      #     :amount => 999,
+      #     :currency => "usd",
+      #     :card => params[:stripeToken], # obtained with Stripe.js
+      #     :description => "Sign up charge for #{@user.email}"
+      #   })
+      # rescue Stripe::CardError => e
+      #   flash[:danger] = e.message
+      # end
 
       AppMailer.send_welcome_email(@user).deliver
       flash[:notice] = "You have created your account!"

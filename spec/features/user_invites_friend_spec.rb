@@ -1,37 +1,53 @@
-# require 'spec_helper'
+require 'spec_helper'
 
-# feature 'User invites friend' do
-#   scenario 'User successfully invites friend and invitation is accepted' do
-#     charlie = Fabricate(:user)
-#     sign_in(charlie)
+feature 'User invites friend' do
+  scenario 'User successfully invites friend and invitation is accepted', :vcr do
+    charlie = Fabricate(:user)
+    sign_in(charlie)
 
-#     visit new_invitation_path
-#     fill_in "Friend's Name", with: "John Doe"
-#     fill_in "Friend's Email Address", with: "john@example.com"
-#     fill_in "Message", with: "Hello, please join this site."
-#     click_button "Send Invitation"
+    invite_a_friend
+    friend_accepts_invitation
+    friend_signs_in
 
-#     open_email "john@example.com"
-#     # require 'pry'; binding.pry
-#     current_email.click_link "Accept this invitation"
+    friend_should_follow(charlie)
+    inviter_should_follow_friend(charlie)
 
-#     fill_in "Password", with: "password"
-#     fill_in "Full Name", with: "John Doe"
-#     click_button "Sign Up"
+    clear_email
+  end
 
-#     fill_in "Email Address", with: "john@example.com"
-#     fill_in "Password", with: "password"
-#     click_button "Sign in"
+  def invite_a_friend
+    visit new_invitation_path
+    fill_in "Friend's Name", with: "John Doe"
+    fill_in "Friend's Email Address", with: "john@example.com"
+    fill_in "Message", with: "Hello, please join this site."
+    click_button "Send Invitation"
+    sign_out
+  end
 
-#     click_link "People"
-#     expect(page).to have_content charlie.full_name
-#     sign_out
+  def friend_accepts_invitation
+    open_email "john@example.com"
+    current_email.click_link "Accept this invitation"
 
-#     sign_in(alice)
-#     click_link "People"
-#     expect(page).to have_content "John Doe"
+    fill_in "Password", with: "password"
+    fill_in "Full Name", with: "John Doe"
+    click_button "Sign Up"
+  end
 
-#     clear_email
+  def friend_signs_in
+    fill_in "Email Address", with: "john@example.com"
+    fill_in "Password", with: "password"
+    click_button "Sign in"
+  end
 
-#   end
-# end
+  def friend_should_follow(user)
+    click_link "People"
+    expect(page).to have_content user.full_name
+    sign_out
+  end
+
+  def inviter_should_follow_friend(inviter)
+    sign_in(inviter)
+    click_link "People"
+    expect(page).to have_content "John Doe"
+  end
+end
