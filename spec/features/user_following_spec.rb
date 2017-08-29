@@ -9,7 +9,6 @@ feature 'User following' do
 
     sign_in
     click_on_video_on_home_page(video)
-    # require 'pry'; binding.pry
     click_link charlie.full_name
     click_link "Follow"
     expect(page).to have_content charlie.full_name

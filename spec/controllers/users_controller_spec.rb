@@ -22,16 +22,18 @@ describe UsersController do
   end
 
   describe "POST create" do
-    context "with valid input" do
-      before(:each) do
-        post :create, user: Fabricate.attributes_for(:user)
-      end
+    before(:each) do
+      StripeWrapper::Charge.stub(:create)
+    end
 
+    context "with valid input" do
       it "create the user" do
+        post :create, user: Fabricate.attributes_for(:user)
         expect(User.count).to eq 1
       end
 
       it "redirect to root_path" do  
+        post :create, user: Fabricate.attributes_for(:user)
         expect(response).to redirect_to sign_in_path
       end
 
@@ -79,6 +81,10 @@ describe UsersController do
     end
 
     context "sending emails" do
+      before(:each) do
+        StripeWrapper::Charge.stub(:create)
+      end
+
       after { ActionMailer::Base.deliveries.clear }
 
       it "sends out email to the user with valide inputs" do
