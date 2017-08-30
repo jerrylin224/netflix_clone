@@ -16,6 +16,8 @@ Myflix::Application.configure do
 
   config.i18n.fallbacks = true
 
+  config.action_mailer.default_url_options = { :host => 'https://mighty-garden-67245.herokuapp.com' }
+
   config.active_support.deprecation = :notify
   ActionMailer::Base.smtp_settings = {
     :port           => ENV['MAILGUN_SMTP_PORT'],
