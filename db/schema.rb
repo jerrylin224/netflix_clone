@@ -32,47 +32,6 @@ ActiveRecord::Schema.define(version: 20170826084802) do
     t.string   "token"
   end
 
-  create_table "newcategories", force: true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "newqueue_items", force: true do |t|
-    t.integer  "newvideo_id"
-    t.integer  "newuser_id"
-    t.integer  "position"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "newreviews", force: true do |t|
-    t.text     "content"
-    t.integer  "newvideo_id"
-    t.integer  "newuser_id"
-    t.integer  "rating"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "newusers", force: true do |t|
-    t.string   "email"
-    t.string   "password_digest"
-    t.string   "full_name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "newvideos", force: true do |t|
-    t.string   "title"
-    t.text     "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "small_cover_url"
-    t.string   "large_cover_url"
-    t.integer  "newcategory_id"
-  end
-
   create_table "queue_items", force: true do |t|
     t.integer  "user_id"
     t.integer  "video_id"
