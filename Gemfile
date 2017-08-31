@@ -19,7 +19,9 @@ gem 'carrierwave'
 gem 'mini_magick'
 gem 'stripe'
 gem 'figaro'
+gem 'unicorn'
 gem 'sidekiq', '~> 3.3', '>= 3.3.1'
+gem 'foreman'
 
 group :development do
   gem 'thin'
