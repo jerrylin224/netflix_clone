@@ -15,6 +15,7 @@ gem 'bcrypt'
 gem 'bootstrap_form'
 gem 'fabrication'
 gem 'faker'
+gem 'fog-aws'
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'stripe'
@@ -22,7 +23,7 @@ gem 'figaro'
 gem 'unicorn'
 gem 'sidekiq', '~> 3.3', '>= 3.3.1'
 gem 'foreman'
-gem 'fog-aws'
+
 
 
 group :development do
