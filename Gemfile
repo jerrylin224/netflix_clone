@@ -22,6 +22,8 @@ gem 'figaro'
 gem 'unicorn'
 gem 'sidekiq', '~> 3.3', '>= 3.3.1'
 gem 'foreman'
+gem 'carrierwave-aws'
+
 
 group :development do
   gem 'thin'
