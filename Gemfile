@@ -3,7 +3,8 @@ ruby '2.1.2'
 
 gem 'bootstrap-sass', '3.1.1.1'
 gem 'coffee-rails'
-gem 'rails', '4.1.1'
+gem 'rails', '4.2.0'
+gem 'haml', '~> 4.0', '>= 4.0.7'
 gem 'haml-rails'
 gem 'sass-rails'
 gem 'uglifier'
@@ -18,6 +19,7 @@ gem 'carrierwave'
 gem 'mini_magick'
 gem 'stripe'
 gem 'figaro'
+gem 'sidekiq', '~> 3.3', '>= 3.3.1'
 
 group :development do
   gem 'thin'
