@@ -10,9 +10,6 @@ before_fork do |server, worker|
 
   defined?(ActiveRecord::Base) and
     ActiveRecord::Base.connection.disconnect!
-
-  # 加入這一行
-  @sidekiq_pid ||= spawn("bundle exec sidekiq -c 2")
 end
 
 after_fork do |server, worker|
@@ -22,5 +19,4 @@ after_fork do |server, worker|
 
   defined?(ActiveRecord::Base) and
     ActiveRecord::Base.establish_connection
-
 end
