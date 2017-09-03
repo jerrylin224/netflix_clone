@@ -1,16 +1,33 @@
-# Online Video Service
+# Netflix clone, project of Tealeaf Acdemy
 
-Project of Build Robust and Production Quality Applications of Tealeaf Acdemy.
+[Demo site](https://mighty-garden-67245.herokuapp.com/)
 
-Demo site
+You can use test account if you don't want to create an account
+email: `test@example.com`
+password: `password`
 
-Features:
+## Features:
+
+- Rspec for model/control/feature tests
 
 - User authentication
-- Reset password with email when user forgot password
+
+- Stripe checkout
+
+- ActionMailer and Mailgun(invite other user via mail)
+
+![](https://im.ezgif.com/tmp/ezgif-1-7a848fe6ac.gif)
+
 - Queue favorite videos
-- Rating video score
-- Follow other user
-- Admin creates/edits/deletes videos
-- Admin upload video cover to AWS S3
-- Rspec for model/control/feature tests
+
+![](https://im.ezgif.com/tmp/ezgif-1-d52300f207.gif)
+
+- Leave review and follow other users
+
+![](https://im.ezgif.com/tmp/ezgif-1-3a39ca1728.gif)
+
+- Create video and use carrierwave to upload file to s3
+
+![](https://im.ezgif.com/tmp/ezgif-1-670a0448f0.gif)
+
+- Simple search
