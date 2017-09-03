@@ -3,6 +3,7 @@
 Stripe.setPublishableKey("#{ENV['STRIPE_PUBLISHABLE_KEY']}");
 </script>
 
+
 %section.register.container
   .row
     .col-sm-10.col-sm-offset-1
@@ -16,4 +17,23 @@ Stripe.setPublishableKey("#{ENV['STRIPE_PUBLISHABLE_KEY']}");
           = f.password_field :password
           = f.text_field :full_name, label: "Full Name"
           = hidden_field_tag :invitation_token, @invitation_token
-          = f.submit "Sign Up"
+        %fieldset.credit_card
+          %span.payment-errors
+          .form-group
+            %label.control-label.col-sm-2(for="credit-card-number") Credit Card Number
+            .col-sm-6
+              %input.form-control#credit-card-number(type="text" data-stripe="number" value="4242424242424242" disabled)
+          .form-group
+            %label.control-label.col-sm-2(for="security-code") Security Code
+            .col-sm-6
+              %input.form-control#security-code(type="text" data-stripe="cvc" value="111" disabled)
+          .form-group
+            %label.control-label.col-sm-2 Expiration
+            .col-sm-3
+              = select_month(Date.today, {add_month_numbers: true},  class: 'form-control', data: {stripe: "exp-month"}, disabled: true)
+            .col-sm-2
+              = select_year((Date.today.year + 3), {start_year: Date.today.year, end_year: Date.today.year + 4}, class: 'form-control', data: {stripe: "exp-year"}, disabled: true)
+          .form-group
+            .col-sm-8.col-md-offset-1 Stripe feature is temporary comment out for not being able to acctivate live mode
+          = f.form_group do
+            = f.submit "Sign Up"

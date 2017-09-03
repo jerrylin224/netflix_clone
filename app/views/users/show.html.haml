@@ -3,7 +3,7 @@
     .col-sm-10.col-sm-offset-1
       %article
         %header
-          %img(src="http://www.gravatar.com/avatar/#{Digest::MD5.hexdigest('knwang@gmail.com'.downcase)}?s=40")
+          %img(src="http://cdn.wpbeginner.com/wp-content/uploads/2012/08/gravatarlogo.jpg" height="40" width="40")
           %h2 #{@user.full_name}'s video collections (#{@user.queue_items.count})
           = link_to "Follow", relationships_path(leader_id: @user.id), class: "btn btn-default", method: :post if current_user.can_follow?(@user)
         %table.table
