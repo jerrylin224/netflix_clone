@@ -59,7 +59,7 @@ describe PasswordResetsController do
           charlie = Fabricate(:user)
           charlie.update_columns(token: '12345')
           post :create, token: '12345', password: 'new_password'
-          expect(flash[:notice]).to be_present
+          expect(flash[:success]).to be_present
         end
 
         it "regenerates the user token" do

@@ -26,7 +26,7 @@ class UsersController < ApplicationController
       # end
 
       # AppMailer.send_welcome_email(@user).deliver
-      flash[:notice] = "You have created your account!"
+      flash[:success] = "You have created your account!"
       session[:user_id] = @user.id
       redirect_to sign_in_path
       # 應該要register後直接sign_in才對啊＠＠，回去重寫一下

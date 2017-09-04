@@ -4,7 +4,7 @@ Myflix::Application.routes.draw do
   resources :users, only: [:create, :show]
   resources :videos, except: [:index] do
     collection do
-      get :search, to: "videos#search"
+      get :search
     end
     resources :reviews, only: [:create]
   end
@@ -18,7 +18,6 @@ Myflix::Application.routes.draw do
 
   get '/ui(/:action)', controller: 'ui'
   get '/home', to: 'videos#index'
-  # get '/videos/:id', to: 'videos#show'
 
   resources :relationships, only: [:create, :destroy]
   get '/people', to: 'relationships#index'

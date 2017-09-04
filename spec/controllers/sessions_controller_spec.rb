@@ -28,8 +28,8 @@ describe SessionsController do
         expect(response).to redirect_to home_path
       end
 
-      it "set the notice" do
-        expect(flash[:notice]).not_to be_blank
+      it "set the success" do
+        expect(flash[:success]).not_to be_blank
       end
     end
 

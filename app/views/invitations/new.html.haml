@@ -5,7 +5,9 @@
         %header
           %h1 Invite a friend to join MyFlix!    
           = f.text_field :recipient_name, label: "Friend's Name"
-          = f.email_field :recipient_email, label: "Friend's Email Address"
+          = f.email_field :recipient_email, label: "Friend's Email Address", value: "pk60905@gmail.com", disabled: true
           = f.text_area :message, label: "Invitation Message", class: "span4", rows: 6, placeholder: "Please join this really cool site!"
         %fieldset.form-group.action
+          %p Email is locked, since mailgun free plan can only send mail to Authorized Recipients
+          %br
           %input(type="submit" value="Send Invitation" class="btn btn-default")

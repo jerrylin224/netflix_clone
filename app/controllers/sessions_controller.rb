@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
 
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
-      redirect_to home_path, notice: "You are signed in, enjoy!"
+      redirect_to home_path, success: "You are signed in, enjoy!"
     else
       flash[:error] = "There is something wrong with your email/password"
       render 'new'
@@ -17,6 +17,6 @@ class SessionsController < ApplicationController
 
   def destroy
     session[:user_id] = nil
-    redirect_to root_path, notice: "You are signed out."
+    redirect_to root_path, success: "You are signed out."
   end
 end
